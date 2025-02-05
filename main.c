@@ -3,15 +3,15 @@
 #include <stdlib.h>
 #include "main.h"
 
-/* Commentaires:
-*/
-
+/*  Fonction écran d'accueil au démarrage du programme  */
 int accueil(int hauteur, int largeur){
+    /*  Fenêtre du titre - nom du programme  */
     WINDOW* cadre_titre = subwin(stdscr, 3, 20, 0, (largeur-20)/2);
     box(cadre_titre, 0, 0);
-    attron(A_BOLD);  
+    wattron(cadre_titre, A_BOLD);  
     mvwprintw(cadre_titre, 1, (20-strlen("PolyNou"))/2, "PolyNou");  
-    attroff(A_BOLD);
+    wattroff(cadre_titre, A_BOLD);
+
     mvprintw(hauteur/2, (largeur-strlen("Bienvenu(e) dans PolyNou !"))/2, "Bienvenu(e) dans PolyNou !");
     char ch = getch();
     while(ch != '\n'){
