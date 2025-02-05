@@ -13,12 +13,16 @@ int accueil(int hauteur, int largeur){
     wattroff(cadre_titre, A_BOLD);
 
     mvprintw(hauteur/2, (largeur-strlen("Bienvenu(e) dans PolyNou !"))/2, "Bienvenu(e) dans PolyNou !");
+    
+    /*  Attente de l'utilisateur  */
     char ch = getch();
     while(ch != '\n'){
         ch = getch();
     }
+
+    /*  Suppression des WINDOW's et autres */
     delwin(cadre_titre);
-    clear();  // Rafraîchit l'écran
+    clear();
     return 0;
 }
 
