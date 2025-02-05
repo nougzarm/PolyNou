@@ -7,11 +7,10 @@
 */
 
 int accueil(int hauteur, int largeur){
-    attron(A_BOLD);
-    mvprintw(0, (largeur-strlen("PolyNou"))/2, "PolyNou");
+    attron(A_BOLD);  
+    mvprintw(0, (largeur-strlen("PolyNou"))/2, "PolyNou");  
     attroff(A_BOLD);
-    char titre[] = "Bienvenu(e) dans PolyNou !";
-    mvprintw(hauteur/2, (largeur-strlen(titre))/2, titre);
+    mvprintw(hauteur/2, (largeur-strlen("Bienvenu(e) dans PolyNou !"))/2, "Bienvenu(e) dans PolyNou !");
     char ch = getch();
     while(ch != '\n'){
         ch = getch();
@@ -21,7 +20,7 @@ int accueil(int hauteur, int largeur){
 }
 
 int main() {
-    initscr();
+    initscr(); 
     curs_set(0);
     int hauteur, largeur;
     getmaxyx(stdscr, hauteur, largeur);
@@ -32,6 +31,11 @@ int main() {
     refresh();
     mvprintw(hauteur/2, 2, "Bravo ! vous avez réussi à entrer");
     getch();
-    endwin();
+
+    // Nettoyage
+    clear();
+    delwin(stdscr);
+    endwin();  // Quitte proprement ncurses
+    refresh();
     return 0;
 }
