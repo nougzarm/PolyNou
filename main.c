@@ -6,14 +6,18 @@
 /*  Fonction écran d'accueil au démarrage du programme  */
 int accueil(int hauteur, int largeur){
     /*  Fenêtre du titre - nom du programme  */
-    WINDOW* cadre_titre = subwin(stdscr, 3, 20, 0, (largeur-20)/2);
-    box(cadre_titre, 0, 0);
-    wattron(cadre_titre, A_BOLD);  
-    mvwprintw(cadre_titre, 1, (20-strlen("PolyNou"))/2, "PolyNou");  
-    wattroff(cadre_titre, A_BOLD);
+    WINDOW* fenetre_titre = subwin(stdscr, 3, 20, 0, (largeur-20)/2);
+    box(fenetre_titre, 0, 0);
+    /* wbkgd(fenetre_titre, COLOR_PAIR(2)); */
+    wattron(fenetre_titre, A_BOLD);  
+    mvwprintw(fenetre_titre, 1, (20-strlen("PolyNou"))/2, "PolyNou");  
+    wattroff(fenetre_titre, A_BOLD);
 
-    mvprintw(hauteur/2, (largeur-strlen("Bienvenu(e) dans PolyNou !"))/2, "Bienvenu(e) dans PolyNou !");
-    
+    WINDOW* fenetre_description = subwin(stdscr, 10, 40, 3, (largeur-40)/2);
+    box(fenetre_description, 0, 0);
+    mvwprintw(fenetre_description, 1, (40-strlen("Bienvenu(e) dans PolyNou !"))/2, "Bienvenu(e) dans PolyNou !");
+    wrefresh(fenetre_description);
+
     /*  Attente de l'utilisateur  */
     char ch = getch();
     while(ch != '\n'){
@@ -21,7 +25,8 @@ int accueil(int hauteur, int largeur){
     }
 
     /*  Suppression des WINDOW's et autres */
-    delwin(cadre_titre);
+    delwin(fenetre_titre);
+    delwin(fenetre_description);
     clear();
     return 0;
 }
@@ -43,6 +48,9 @@ int afficher_page(int hauteur, int largeur){
 int main() {
     initscr(); 
     curs_set(0);
+    start_color();
+    init_pair(2, COLOR_WHITE, COLOR_BLUE);
+    wbkgd(stdscr, COLOR_PAIR(2));
     int hauteur, largeur;
     getmaxyx(stdscr, hauteur, largeur);
 
@@ -56,9 +64,8 @@ int main() {
     getch();
 
     // Nettoyage
-    clear();
-    delwin(stdscr);
-    endwin();  // Quitte proprement ncurses
+    curs_set(1);
     refresh();
+    endwin();  // Quitte proprement ncurses
     return 0;
 }
