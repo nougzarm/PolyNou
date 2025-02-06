@@ -9,7 +9,7 @@ int accueil(int hauteur, int largeur){
     WINDOW* fenetre_titre = subwin(stdscr, 3, 20, 0, (largeur-20)/2);
     box(fenetre_titre, 0, 0);
     /* wbkgd(fenetre_titre, COLOR_PAIR(2)); */
-    wattron(fenetre_titre, A_BOLD);  
+    wattron(fenetre_titre, A_BOLD);
     mvwprintw(fenetre_titre, 1, (20-strlen("PolyNou"))/2, "PolyNou");  
     wattroff(fenetre_titre, A_BOLD);
 
@@ -49,7 +49,7 @@ int main() {
     initscr(); 
     curs_set(0);
     start_color();
-    init_pair(2, COLOR_WHITE, COLOR_BLUE);
+    init_pair(2, COLOR_BLACK, COLOR_YELLOW);
     wbkgd(stdscr, COLOR_PAIR(2));
     int hauteur, largeur;
     getmaxyx(stdscr, hauteur, largeur);
