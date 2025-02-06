@@ -3,6 +3,15 @@
 #include <stdlib.h>
 #include "main.h"
 
+
+/*  Fonction d'initialisation */
+int initSetup(void){
+    initscr(); 
+    curs_set(0);
+    start_color();
+    return 0;
+}
+
 /*  Fonction écran d'accueil au démarrage du programme  */
 int accueil(int hauteur, int largeur){
     /*  Fenêtre du titre - nom du programme  */
@@ -46,9 +55,7 @@ int afficher_page(int hauteur, int largeur){
 }
 
 int main() {
-    initscr(); 
-    curs_set(0);
-    start_color();
+    initSetup();
     init_pair(2, COLOR_BLACK, COLOR_YELLOW);
     wbkgd(stdscr, COLOR_PAIR(2));
     int hauteur, largeur;
